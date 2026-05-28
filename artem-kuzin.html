@@ -1165,7 +1165,9 @@
         object-fit: cover;
         object-position: center center;
         transform: translate3d(calc(7vw + var(--hero-video-intro-x, 0px) + var(--hero-video-follow-x, 0px)), 0, 0);
-        will-change: transform;
+        backface-visibility: hidden;
+        transform-style: preserve-3d;
+        will-change: transform, opacity;
       }
 
       .styles_introduce__PhACD {
@@ -4699,8 +4701,8 @@
             </div>
             <div class="styles_overviewSection_image__Z7qDM">
               <div class="style_cm__WwGpD style_cover__4H631 ">
-                <video loop muted playsinline preload="none" data-local-lazy-video class=" undefined style_cm_origin__lxP9F" style="position:absolute;height:100%;width:100%;left:0;top:0;right:0;bottom:0;object-fit:cover;">
-                  <source src="assets/resume-hq.mp4" type="video/mp4" />
+                <video loop muted playsinline preload="none" poster="assets/resume-poster.webp" data-local-lazy-video class=" undefined style_cm_origin__lxP9F" style="position:absolute;height:100%;width:100%;left:0;top:0;right:0;bottom:0;object-fit:cover;">
+                  <source src="assets/resume-smooth.mp4" type="video/mp4" />
                 </video>
               </div>
               <h2 class="styles_heading__Wcjpz text-coral-red styles_heading_108__nfWJE styles_overviewSection_image__title__XZvtv styles_tabletUp__hmGjU">
@@ -4731,8 +4733,8 @@
         </section>
         <section class="styles_letConnectSec__uxyJN" data-scroll-to="vertical" id="section-get-in-touch" data-active="section-get-in-touch" data-active-direction="vertical" data-menu-theme="almost-black" data-theme="almost-black">
           <div class="styles_letConnectSec_bg__FYybM" style="position:absolute;inset:0;width:100%;height:100%;z-index:0">
-            <video loop muted playsinline preload="none" data-local-lazy-video style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
-              <source src="assets/end-hq.mp4" type="video/mp4" />
+            <video loop muted playsinline preload="none" poster="assets/end-poster.webp" data-local-lazy-video style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
+              <source src="assets/end-smooth.mp4" type="video/mp4" />
             </video>
           </div>
           <div class="layout-grid styles_letConnectSec_container___2dKN">
@@ -5147,7 +5149,7 @@
         const turnCompleteAt = 0.5;
         const introShiftRatio = 0.16;
         const followAfterTurnRatio = 0.5;
-        const videoScrubSnap = 0.0015;
+        const videoScrubSnap = 0.0025;
         const aboutImageSpeeds = [-0.9, 0.62, -0.76, 1.02, -0.58];
 
         const clamp = (value, min, max) => Math.min(Math.max(value, min), max);
@@ -5206,7 +5208,7 @@
           // Clamp nextTime to slightly before the end to prevent stalling at the final frame
           const nextTime = Math.min(Math.max(videoDuration * easedVideoProgress, 0), Math.max(0, videoDuration - 0.05));
           
-          if (!heroVideo.seeking && Math.abs(heroVideo.currentTime - nextTime) > 0.01) {
+          if (!heroVideo.seeking && Math.abs(heroVideo.currentTime - nextTime) > 0.018) {
             heroVideo.currentTime = nextTime;
           }
 
@@ -5893,27 +5895,54 @@
         const lazyVideos = Array.from(document.querySelectorAll('video[data-local-lazy-video]'));
         if (!lazyVideos.length) return;
 
+        const primeVideo = video => {
+          if (video.dataset.localVideoPrimed === 'true') return;
+          video.dataset.localVideoPrimed = 'true';
+          video.preload = 'auto';
+          video.load();
+        };
+
         const activateVideo = video => {
           if (video.dataset.localVideoReady === 'true') return;
           video.dataset.localVideoReady = 'true';
-          video.preload = 'metadata';
-          video.load();
+          primeVideo(video);
           video.play().catch(() => {});
         };
 
         if ('IntersectionObserver' in window) {
+          const primeObserver = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+              if (!entry.isIntersecting) return;
+              primeVideo(entry.target);
+              primeObserver.unobserve(entry.target);
+            });
+          }, { rootMargin: '2200px 0px' });
+
           const observer = new IntersectionObserver(entries => {
             entries.forEach(entry => {
               if (!entry.isIntersecting) return;
               activateVideo(entry.target);
               observer.unobserve(entry.target);
             });
-          }, { rootMargin: '720px 0px' });
+          }, { rootMargin: '900px 0px' });
 
-          lazyVideos.forEach(video => observer.observe(video));
+          lazyVideos.forEach(video => {
+            primeObserver.observe(video);
+            observer.observe(video);
+          });
         } else {
-          window.setTimeout(() => lazyVideos.forEach(activateVideo), 3600);
+          window.setTimeout(() => lazyVideos.forEach(primeVideo), 3600);
+          window.setTimeout(() => lazyVideos.forEach(activateVideo), 5200);
         }
+
+        const warmVideos = () => lazyVideos.forEach(primeVideo);
+        window.setTimeout(() => {
+          if ('requestIdleCallback' in window) {
+            window.requestIdleCallback(warmVideos, { timeout: 1800 });
+          } else {
+            warmVideos();
+          }
+        }, 5200);
       })();
     </script>
     <script>
