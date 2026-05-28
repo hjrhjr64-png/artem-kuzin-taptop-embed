@@ -11,11 +11,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&display=swap" rel="stylesheet">
     <link rel="preload" as="image" href="assets/logo12.svg" />
     <link rel="preload" as="image" href="assets/play-ic.svg?v=2" />
-    <link rel="preload" as="image" href="assets/cases/1.png" />
-    <link rel="preload" as="image" href="assets/cases/2.png" />
-    <link rel="preload" as="image" href="assets/cases/3.png" />
-    <link rel="preload" as="image" href="assets/cases/4.png" />
-    <link rel="preload" as="image" href="assets/cases/5.png" />
     <link rel="stylesheet" href="portfolio-assets/css/658bff1259063833.css" data-precedence="next" />
     <link rel="stylesheet" href="portfolio-assets/css/fd7fcadae4ca2756.css" data-precedence="next" />
     <link rel="stylesheet" href="portfolio-assets/css/73eaff7cf7596401.css" data-precedence="next" />
@@ -43,13 +38,6 @@
 
 
 
-    <link rel="preload" as="image" href="assets/cases/6.png" />
-    <link rel="preload" as="image" href="assets/cases/7.png" />
-    <link rel="preload" as="image" href="assets/cases/8.png" />
-    <link rel="preload" as="image" href="assets/cases/9.png" />
-    <link rel="preload" as="image" href="assets/cases/10.png" />
-    <link rel="preload" as="image" href="hero-bg.jpg" />
-    <link rel="preload" as="image" href="hero-bg.webp" />
     <title>
       Артём Кузин | дизайнер интерфейсов
     </title>
@@ -1023,17 +1011,18 @@
 
       body.local-loader-measuring .styles_heroSec_flex__sub__77caW,
       body.local-loader-active .styles_heroSec_flex__sub__77caW {
-        align-self: center !important;
+        align-self: flex-start !important;
         flex: 0 0 0 !important;
         width: 0 !important;
         max-width: 0 !important;
         opacity: 0 !important;
         overflow: hidden !important;
         transform: translate3d(-6.8rem, 0, 0);
-        transition: none !important;
+        transition: opacity 0.72s cubic-bezier(0.77, 0, 0.175, 1), transform 0.72s cubic-bezier(0.77, 0, 0.175, 1) !important;
       }
 
       body.local-loader-active.local-loader-subtitle-in .styles_heroSec_flex__sub__77caW {
+        align-self: flex-start !important;
         flex: 0 0 var(--loader-subtitle-slot, clamp(13.5rem, 15vw, 20rem)) !important;
         width: var(--loader-subtitle-slot, clamp(13.5rem, 15vw, 20rem)) !important;
         max-width: var(--loader-subtitle-slot, clamp(13.5rem, 15vw, 20rem)) !important;
@@ -4125,9 +4114,7 @@
           <span>Артём Кузин</span>
           <span>дизайнер интерфейсов</span>
         </p>
-        <div class="local-intro-loader__face">
-          <video src="portfolio-assets/videos/hero-scroll.mp4" muted="" playsinline="" preload="metadata"></video>
-        </div>
+        <div class="local-intro-loader__face"></div>
         <div class="local-intro-loader__wipe"></div>
       </div>
     </div>
@@ -4298,7 +4285,7 @@
                 <div class="styles_introduce_bot__media__pQTTH">
                   <div class="styles_introduce_bot__mediaVideo__AxSHF" id="flipContainerPutBack">
                     <div data-flip-id="flipVideo" class="styles_introduce_bot__mediaVideoContainer__Luahs animatedBack">
-                      <video src="assets/showreel.mp4" poster="assets/cover.png" class="styles_introduce_bot__mediaVideoEl__a4V_8" muted="" playsinline="">
+                      <video src="assets/showreel.mp4" poster="assets/cover.png" class="styles_introduce_bot__mediaVideoEl__a4V_8" muted="" playsinline="" preload="none">
                       </video>
                     </div>
                   </div>
@@ -4712,7 +4699,7 @@
             </div>
             <div class="styles_overviewSection_image__Z7qDM">
               <div class="style_cm__WwGpD style_cover__4H631 ">
-                <video autoplay loop muted playsinline class=" undefined style_cm_origin__lxP9F" style="position:absolute;height:100%;width:100%;left:0;top:0;right:0;bottom:0;object-fit:cover;">
+                <video loop muted playsinline preload="none" data-local-lazy-video class=" undefined style_cm_origin__lxP9F" style="position:absolute;height:100%;width:100%;left:0;top:0;right:0;bottom:0;object-fit:cover;">
                   <source src="assets/resume.mp4" type="video/mp4" />
                 </video>
               </div>
@@ -4744,7 +4731,7 @@
         </section>
         <section class="styles_letConnectSec__uxyJN" data-scroll-to="vertical" id="section-get-in-touch" data-active="section-get-in-touch" data-active-direction="vertical" data-menu-theme="almost-black" data-theme="almost-black">
           <div class="styles_letConnectSec_bg__FYybM" style="position:absolute;inset:0;width:100%;height:100%;z-index:0">
-            <video autoplay loop muted playsinline style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
+            <video loop muted playsinline preload="none" data-local-lazy-video style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
               <source src="assets/end.mp4" type="video/mp4" />
             </video>
           </div>
@@ -4878,7 +4865,7 @@
       <div class="styles_menu__9VCB2">
         <div class="styles_menuVideo__hgSQ4">
           <div class="styles_videoP__cAyUF">
-            <video src="assets/showreel.mp4" muted="" playsinline="" loop="" class="">
+            <video src="assets/showreel.mp4" muted="" playsinline="" loop="" preload="none" class="">
             </video>
           </div>
         </div>
@@ -4940,7 +4927,7 @@
             <span class="styles_videoFlip_closeLine__qYx9e styles_two__BaSZJ"></span>
           </div>
           <div data-flip-id="flipVideo" class="hidden animatedElement styles_videoFlip_containerEl__9jtf1">
-            <video class="styles_videoFlip_containerEl__9jtf1" src="assets/showreel.mp4" poster="assets/cover.png" playsinline="" autoplay="" loop="" controls="" muted="">
+            <video class="styles_videoFlip_containerEl__9jtf1" src="assets/showreel.mp4" poster="assets/cover.png" playsinline="" loop="" controls="" muted="" preload="none">
             </video>
           </div>
         </div>
@@ -5901,6 +5888,33 @@
         media.volume = 0;
         media.defaultMuted = true;
       });
+
+      (() => {
+        const lazyVideos = Array.from(document.querySelectorAll('video[data-local-lazy-video]'));
+        if (!lazyVideos.length) return;
+
+        const activateVideo = video => {
+          if (video.dataset.localVideoReady === 'true') return;
+          video.dataset.localVideoReady = 'true';
+          video.preload = 'metadata';
+          video.load();
+          video.play().catch(() => {});
+        };
+
+        if ('IntersectionObserver' in window) {
+          const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+              if (!entry.isIntersecting) return;
+              activateVideo(entry.target);
+              observer.unobserve(entry.target);
+            });
+          }, { rootMargin: '720px 0px' });
+
+          lazyVideos.forEach(video => observer.observe(video));
+        } else {
+          window.setTimeout(() => lazyVideos.forEach(activateVideo), 3600);
+        }
+      })();
     </script>
     <script>
       (function() {
@@ -5945,11 +5959,23 @@
           'assets/cases/10.png'
         ];
 
-        // Pre-load images
-        trailImages.forEach(src => {
-          const img = new Image();
-          img.src = src;
-        });
+        const preloadTrailImages = () => {
+          trailImages.forEach(src => {
+            const img = new Image();
+            img.decoding = 'async';
+            img.src = src;
+          });
+        };
+
+        const scheduleTrailPreload = () => {
+          if ('requestIdleCallback' in window) {
+            window.requestIdleCallback(preloadTrailImages, { timeout: 3000 });
+          } else {
+            window.setTimeout(preloadTrailImages, 1200);
+          }
+        };
+
+        window.setTimeout(scheduleTrailPreload, document.body.classList.contains('local-loader-active') ? 7200 : 0);
 
         // Create container
         const container = document.createElement('div');
